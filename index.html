@@ -1,23 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Azariah | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Azariah | Gallery</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <section class="hero">
-    <h1>Hey, I’m Azariah</h1>
-    <p>3D Artist • Video Editor • Tech Tinkerer • DJ • Cyberpunk Enjoyer</p>
-  </section>
 
-  <section class="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li>Project Limbo – Blender Character & Cyberpunk Worldbuilding</li>
-      <li>YouTube: Sifu No-Death Master Run (in the works)</li>
-      <li>DJ Mixes • Graphic Design • Motion Capture Experiments</li>
-    </ul>
-  </section>
+  <header>
+    <h1>Azariah | PNG Gallery</h1>
+    <p>Showing all your work</p>
+  </header>
+
+  <section id="gallery" class="gallery"></section>
+
+  <!-- ⭐⭐ PUT THE SCRIPT RIGHT HERE ⭐⭐ -->
+  <script>
+    const images = [
+      "71H46QD96XL._SL1200_.png",
+      "1337.png",
+      "AK-47.png",
+      "Angry Tyler.png",
+      "BladeRunner2048 MachineGirl #2.png",
+      "BladeRunner2048 MachineGirl.png",
+      "bottle.png",
+      "Box.png",
+      "Chill Power Pose.png",
+      "Chill.png",
+      "Club Love (1).png",
+      "Club Love (2).png",
+      "Club Love (3).png",
+      "Club Love (4).png",
+      "Club Love (5).png",
+      "Cyberia #1.png",
+      "Cyberia #2.png",
+      "Cyberia #3.png",
+      "Death Part.png",
+      "FingerTest.png",
+      "FinMudkip.png",
+      "Halo 3 R.png",
+      "Machine girl suitcase.png",
+      "Machine Girl Test Render #2.png",
+      "Machine Girl Test Render.png",
+      "MG Stairs #3.png",
+      "MP5 Finish #1.png",
+      "Mudkip.png",
+      "Mudkipy.png",
+      "NothingButDrip.png",
+      "Petchrov V.png",
+      "Posing.png",
+      "Purple Render.png",
+      "Ring Shot.png",
+      "Room Vibe.png",
+      "Sad Dude thing #3.png",
+      "Sad Sad Maan.png",
+      "Subway.png",
+      "SUS IMPOSTER.png",
+      "Sword Pose.png",
+      "Sword.png",
+      "Test Album.png",
+      "Test Render.png",
+      "Tyler Album.png",
+      "Tyler Chilling.png",
+      "Tyler Chilling2.png",
+      "Tyler Topset.png",
+      "untitled (1).png",
+      "untitled.png",
+      "untitled122.png",
+      "untitled23.png",
+      "untitled34.png",
+      "untitled45.png",
+      "untitled56.png",
+      "untitled_g.png",
+      "VR Portal.png",
+      "wireframe dude.png"
+    ];
+
+    const gallery = document.getElementById("gallery");
+
+    images.forEach(name => {
+      const img = document.createElement("img");
+      img.src = `img/${name}`;
+      img.alt = name;
+      gallery.appendChild(img);
+    });
+  </script>
+
 </body>
 </html>
