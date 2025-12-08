@@ -9,50 +9,45 @@
 <section class="video-section">
   <h2>Video Reel</h2>
 
-  <!-- Original video -->
-  <div class="video-container">
-    <iframe 
-      src="https://www.youtube.com/embed/qsLTzyPeLS4"
-      title="Video 0"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
+  <div class="video-grid">
 
-  <!-- New video 1 -->
-  <div class="video-container" style="margin-top: 40px;">
-    <iframe 
-      src="https://www.youtube.com/embed/mXtX0ABJNHQ"
-      title="Video 1"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+    <!-- ORIGINAL VIDEO -->
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/qsLTzyPeLS4" allowfullscreen></iframe>
+    </div>
 
-  <!-- New video 2 -->
-  <div class="video-container" style="margin-top: 40px;">
-    <iframe 
-      src="https://www.youtube.com/embed/flUpquzw2e0"
-      title="Video 2"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+    <!-- PREVIOUS VIDEOS -->
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/mXtX0ABJNHQ" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/flUpquzw2e0" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/75AU2VydLus" allowfullscreen></iframe>
+    </div>
 
-  <!-- New video 3 -->
-  <div class="video-container" style="margin-top: 40px;">
-    <iframe 
-      src="https://www.youtube.com/embed/75AU2VydLus"
-      title="Video 3"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+    <!-- NEW VIDEOS -->
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/lW863SdeHsI" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/TOMPx0jnlUM" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/cfTvESO6aic" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/9QYh-oE3ueQ" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/O7jL_vHwO6k" allowfullscreen></iframe>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/fND7x-TSDk8" allowfullscreen></iframe>
+    </div>
 
+  </div>
 </section>
 
 <body>
@@ -66,7 +61,7 @@
 
   <script>
     // Automatically generate filenames 1.png → 52.png
-    const images = Array.from({ length: 52 }, (_, i) => `${i + 1}.png`);
+    const images = Array.from({ length: 54 }, (_, i) => `${i + 1}.png`);
 
     const gallery = document.getElementById("gallery");
 
