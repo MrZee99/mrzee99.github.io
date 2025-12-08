@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Azariah | Gallery</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+<header class="top-banner">
+  <h1>Azariah (aka Mr_Zee99)</h1>
+  <p>3D Artist • Video Editor • Cyberpunk Enthusiast • Tech Tinkerer</p>
+</header>
 
 <section class="video-section">
   <h2>Video Reel</h2>
@@ -71,6 +70,12 @@
   </div>
 </section>
 
+<!-- Lightbox Overlay -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="">
+</div>
+
 <body>
 
   <header>
@@ -91,6 +96,30 @@
       img.alt = name;
       gallery.appendChild(img);
     });
+
+// LIGHTBOX FUNCTIONALITY
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.querySelector(".close");
+
+  // Add click event to every gallery image
+  document.querySelectorAll(".gallery img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "flex";
+      lightboxImg.src = img.src;
+    });
+  });
+
+  // Close lightbox
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+
+  // Close when clicking outside image
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) lightbox.style.display = "none";
+  });
+
   </script>
 
 </body>
