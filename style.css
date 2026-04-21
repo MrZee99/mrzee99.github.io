@@ -127,30 +127,39 @@ body {
 .social-footer {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  padding: 40px 20px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  gap: 40px;
+  padding: 60px 20px;
+  margin-top: 80px;
+
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
 }
 
 .social-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: white;
+
+  color: #aaa;
   text-decoration: none;
   font-size: 14px;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
+
+  transition: all 0.2s ease;
 }
 
 .social-link:hover {
-  opacity: 1;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 .social-link img {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+
+  filter: brightness(0.8);
+  transition: filter 0.2s ease;
 }
-.social-footer {
-  margin-top: 60px;
+
+.social-link:hover img {
+  filter: brightness(1.5);
 }
