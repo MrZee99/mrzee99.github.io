@@ -123,3 +123,34 @@ body {
   height: 100%;
   border: none;
 }
+
+.social-footer {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.social-link:hover {
+  opacity: 1;
+}
+
+.social-link img {
+  width: 20px;
+  height: 20px;
+}
+.social-footer {
+  margin-top: 60px;
+}
