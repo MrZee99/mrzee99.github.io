@@ -55,7 +55,7 @@ body {
   opacity: 0.9;
 }
 
-/* LIGHTBOX VIEWER */
+/* LIGHTBOX */
 .lightbox {
   display: none;
   position: fixed;
@@ -85,7 +85,7 @@ body {
   cursor: pointer;
 }
 
-/* VIDEO SECTION */
+/* VIDEO */
 .video-section {
   text-align: center;
   margin-top: 60px;
@@ -124,6 +124,7 @@ body {
   border: none;
 }
 
+/* FOOTER */
 .social-footer {
   display: flex;
   justify-content: center;
@@ -155,7 +156,6 @@ body {
 .social-link img {
   width: 18px;
   height: 18px;
-
   filter: brightness(0.8);
   transition: filter 0.2s ease;
 }
