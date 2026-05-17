@@ -12,6 +12,20 @@ const galleryItems = [
   { project: "Club Luve", folder: "Club-Luve", file: "12.png" },
   { project: "Club Luve", folder: "Club-Luve", file: "13.png" },
 
+  { project: "Machine Girl", folder: "Machine-Girl", file: "5.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "14.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "16.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "19.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "20.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "21.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "24.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "27.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "28.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "30.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "33.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "38.png" },
+  { project: "Machine Girl", folder: "Machine-Girl", file: "52.png" },
+
   { project: "Metro", folder: "Metro", file: "34.png" },
 
   { project: "Misc Practice", folder: "Misc-Practice", file: "1.png" },
