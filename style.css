@@ -11,13 +11,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-
   display: flex;
   justify-content: center;
   gap: 40px;
-
   padding: 20px;
-
   background: rgba(0, 0, 0, 0.92);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
@@ -28,7 +25,6 @@ body {
   text-transform: uppercase;
   font-size: 14px;
   letter-spacing: 1px;
-
   transition: opacity 0.2s ease;
 }
 
@@ -43,29 +39,23 @@ body {
 
 .home-dossier {
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: 40px;
 }
 
 .home-frame {
   position: relative;
-
   width: 100%;
   max-width: 1500px;
   min-height: 780px;
-
   border: 1px solid rgba(255,255,255,0.12);
   background: radial-gradient(circle at top, rgba(255,255,255,0.03), transparent 40%);
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-
   overflow: hidden;
 }
 
@@ -73,7 +63,6 @@ body {
   position: absolute;
   top: 40px;
   left: 40px;
-
   font-size: 13px;
   letter-spacing: 1px;
   line-height: 1.9;
@@ -84,14 +73,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: end;
-
   height: 100%;
 }
 
 .home-visual img {
   max-height: 850px;
   width: auto;
-
   filter: drop-shadow(0 0 40px rgba(0,0,0,0.8));
 }
 
@@ -122,7 +109,6 @@ body {
 .objective-box {
   margin-top: 50px;
   padding: 30px;
-
   border: 1px solid rgba(255,255,255,0.1);
   background: rgba(255,255,255,0.02);
 }
@@ -141,13 +127,10 @@ body {
 /* BARCODE */
 .barcode-block {
   margin-top: 18px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-
   opacity: 0.22;
-
   pointer-events: none;
 }
 
@@ -155,14 +138,12 @@ body {
   width: 140px;
   max-width: 18vw;
   height: auto;
-
   image-rendering: crisp-edges;
   filter: grayscale(1) brightness(1.2);
 }
 
 .barcode-block p {
   margin-top: 6px;
-
   font-size: 9px;
   letter-spacing: 3px;
   color: rgba(255,255,255,0.45);
@@ -177,12 +158,9 @@ body {
 .archive-header {
   max-width: 1600px;
   margin: 0 auto 70px auto;
-
   padding: 40px 0 35px 0;
-
   border-top: 1px solid rgba(255,255,255,0.08);
   border-bottom: 1px solid rgba(255,255,255,0.08);
-
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -191,7 +169,6 @@ body {
 .archive-meta {
   display: flex;
   gap: 30px;
-
   font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -200,7 +177,6 @@ body {
 
 .archive-header h1 {
   margin: 0;
-
   font-size: 5rem;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -209,37 +185,50 @@ body {
 
 .archive-header p {
   margin: 0;
-
   max-width: 700px;
-
   font-size: 16px;
   line-height: 1.8;
   color: rgba(255,255,255,0.65);
-}
-
-.placeholder-section {
-  text-align: center;
 }
 
 /* GALLERY */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
+  gap: 18px;
   max-width: 1600px;
   margin: auto;
 }
 
-.gallery img {
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-card img {
   width: 100%;
+  display: block;
   border-radius: 6px;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.gallery img:hover {
+.gallery-card:hover img {
   transform: scale(1.02);
   opacity: 0.92;
+}
+
+.image-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  padding: 6px 10px;
+  background: rgba(0,0,0,0.75);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
 }
 
 /* LIGHTBOX */
@@ -268,6 +257,44 @@ body {
   font-size: 40px;
   color: white;
   cursor: pointer;
+}
+
+/* PROJECTS */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 28px;
+  max-width: 1600px;
+  margin: auto;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-info {
+  padding: 24px;
+}
+
+.project-info h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.project-info p {
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
 }
 
 /* VIDEO */
@@ -302,10 +329,8 @@ body {
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
-
   padding: 60px 20px;
   margin-top: 60px;
-
   border-top: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -313,7 +338,6 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-
   color: #aaa;
   text-decoration: none;
 }
@@ -345,5 +369,9 @@ body {
 
   .archive-header h1 {
     font-size: 3rem;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
   }
 }
