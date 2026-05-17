@@ -140,19 +140,20 @@ body {
 
 /* BARCODE */
 .barcode-block {
-  margin-top: 22px;
+  margin-top: 18px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  opacity: 0.18;
+  opacity: 0.22;
 
   pointer-events: none;
 }
 
 .barcode-block img {
-  width: 260px;
+  width: 140px;
+  max-width: 18vw;
   height: auto;
 
   image-rendering: crisp-edges;
@@ -160,10 +161,10 @@ body {
 }
 
 .barcode-block p {
-  margin-top: 8px;
+  margin-top: 6px;
 
-  font-size: 10px;
-  letter-spacing: 4px;
+  font-size: 9px;
+  letter-spacing: 3px;
   color: rgba(255,255,255,0.45);
 }
 
