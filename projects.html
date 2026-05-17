@@ -27,50 +27,65 @@
     <p>Grouped collections, environments, experiments, and visual concepts.</p>
   </header>
 
-  <section class="project-grid">
-
-    <article class="project-card">
-      <img src="IMAGES/Club-Cyberia/1.png" alt="Club Cyberia preview">
-      <div class="project-info">
-        <h2>Club Cyberia</h2>
-        <p>Neon environments, underground club visuals, and atmosphere tests.</p>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <img src="IMAGES/Club-Luve/1.png" alt="Club Luve preview">
-      <div class="project-info">
-        <h2>Club Luve</h2>
-        <p>Dark lounge concepts and red-lit environment experiments.</p>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <img src="IMAGES/Metro/1.png" alt="Metro preview">
-      <div class="project-info">
-        <h2>Metro</h2>
-        <p>Subway renders, underground transit scenes, and cinematic lighting.</p>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <img src="IMAGES/Tyler-Chibi/1.png" alt="Tyler Chibi preview">
-      <div class="project-info">
-        <h2>Tyler Chibi</h2>
-        <p>Stylized low-poly character work inspired by Tyler, The Creator.</p>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <img src="IMAGES/ZEE/53.png" alt="Z.E.E preview">
-      <div class="project-info">
-        <h2>Z.E.E</h2>
-        <p>The evolving digital mascot, identity system, and visual archive core.</p>
-      </div>
-    </article>
-
-  </section>
+  <section id="project-grid" class="project-grid"></section>
 </section>
+
+<script src="gallery-data.js?v=3"></script>
+
+<script>
+  const projectDescriptions = {
+    "Club Cyberia": "Neon environments, underground club visuals, and atmosphere tests.",
+    "Club Luve": "Dark lounge concepts and red-lit environment experiments.",
+    "Metro": "Subway renders, underground transit scenes, and cinematic lighting.",
+    "Misc Practice": "Loose render tests, experiments, and visual problem-solving.",
+    "Photo Manipulation": "Edited imagery, composite tests, and graphic experiments.",
+    "Slav": "Character experiments and stylized figure work.",
+    "Tyler Chibi": "Stylized low-poly character work inspired by Tyler, The Creator.",
+    "Weapons": "Hard-surface models, prop tests, and weapon renders.",
+    "Z.E.E": "The evolving digital mascot, identity system, and visual archive core."
+  };
+
+  const projectGrid = document.getElementById("project-grid");
+  const groupedProjects = {};
+
+  galleryItems.forEach(item => {
+    if (!groupedProjects[item.project]) {
+      groupedProjects[item.project] = [];
+    }
+
+    groupedProjects[item.project].push(item);
+  });
+
+  function randomItem(items) {
+    return items[Math.floor(Math.random() * items.length)];
+  }
+
+  Object.entries(groupedProjects).forEach(([projectName, items]) => {
+    const preview = randomItem(items);
+
+    const card = document.createElement("article");
+    card.className = "project-card";
+
+    const img = document.createElement("img");
+    img.src = encodeURI(`IMAGES/${preview.folder}/${preview.file}`);
+    img.alt = `${projectName} preview`;
+
+    const info = document.createElement("div");
+    info.className = "project-info";
+
+    const title = document.createElement("h2");
+    title.textContent = projectName;
+
+    const description = document.createElement("p");
+    description.textContent = projectDescriptions[projectName] || "Grouped visual experiments and project archive.";
+
+    info.appendChild(title);
+    info.appendChild(description);
+    card.appendChild(img);
+    card.appendChild(info);
+    projectGrid.appendChild(card);
+  });
+</script>
 
 </body>
 </html>
