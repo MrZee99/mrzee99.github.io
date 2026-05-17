@@ -35,17 +35,21 @@
   <img id="lightbox-img" src="" alt="Expanded gallery item">
 </div>
 
-<script src="gallery-data.js"></script>
+<script src="gallery-data.js?v=3"></script>
 
 <script>
   const gallery = document.getElementById("gallery");
+
+  function imagePath(item) {
+    return encodeURI(`IMAGES/${item.folder}/${item.file}`);
+  }
 
   galleryItems.forEach(item => {
     const card = document.createElement("article");
     card.className = "gallery-card";
 
     const img = document.createElement("img");
-    img.src = `IMAGES/${item.folder}/${item.file}`;
+    img.src = imagePath(item);
     img.alt = item.project;
     img.loading = "lazy";
 
