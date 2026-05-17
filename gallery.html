@@ -36,14 +36,45 @@
 </div>
 
 <script>
-  const images = Array.from({ length: 61 }, (_, i) => `${i + 1}.png`);
+  const projects = [
+    { name: "Club Cyberia", folder: "Club-Cyberia", count: 12 },
+    { name: "Club Luve", folder: "Club-Luve", count: 12 },
+    { name: "Metro", folder: "Metro", count: 12 },
+    { name: "Misc Practice", folder: "Misc-Practice", count: 12 },
+    { name: "Photo Manipulation", folder: "Photo-Manipulation", count: 12 },
+    { name: "Slav", folder: "Slav", count: 12 },
+    { name: "Tyler Chibi", folder: "Tyler-Chibi", count: 12 },
+    { name: "Weapons", folder: "Weapons", count: 12 },
+    { name: "Z.E.E", folder: "ZEE", start: 53, end: 61 }
+  ];
+
   const gallery = document.getElementById("gallery");
 
-  images.forEach(name => {
-    const img = document.createElement("img");
-    img.src = `img/${name}`;
-    img.alt = name;
-    gallery.appendChild(img);
+  projects.forEach(project => {
+    const start = project.start || 1;
+    const end = project.end || project.count;
+
+    for (let i = start; i <= end; i++) {
+      const card = document.createElement("article");
+      card.className = "gallery-card";
+
+      const img = document.createElement("img");
+      img.src = `IMAGES/${project.folder}/${i}.png`;
+      img.alt = `${project.name} render ${i}`;
+      img.loading = "lazy";
+
+      const tag = document.createElement("span");
+      tag.className = "image-tag";
+      tag.textContent = project.name;
+
+      img.addEventListener("error", () => {
+        card.remove();
+      });
+
+      card.appendChild(img);
+      card.appendChild(tag);
+      gallery.appendChild(card);
+    }
   });
 
   const lightbox = document.getElementById("lightbox");
@@ -51,7 +82,7 @@
   const closeBtn = document.querySelector(".close");
 
   document.addEventListener("click", (e) => {
-    if (e.target.matches(".gallery img")) {
+    if (e.target.matches(".gallery-card img")) {
       lightbox.style.display = "flex";
       lightboxImg.src = e.target.src;
     }
