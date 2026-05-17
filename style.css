@@ -45,6 +45,7 @@ body {
   min-height: 100vh;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -66,71 +67,6 @@ body {
   align-items: center;
 
   overflow: hidden;
-}
-
-/* SIDE GRID LINES */
-.side-grid {
-  position: absolute;
-  top: 50%;
-
-  width: 60px;
-  height: 70%;
-
-  transform: translateY(-50%);
-
-  opacity: 0.25;
-}
-
-.side-grid::before {
-  content: "";
-  position: absolute;
-
-  top: 0;
-  bottom: 0;
-
-  width: 1px;
-  background: rgba(255,255,255,0.35);
-}
-
-.side-grid::after {
-  content: "";
-  position: absolute;
-
-  top: 0;
-  bottom: 0;
-  width: 100%;
-
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 55px,
-    rgba(255,255,255,0.35) 55px,
-    rgba(255,255,255,0.35) 57px
-  );
-}
-
-.side-grid-left {
-  left: 18px;
-}
-
-.side-grid-left::before {
-  left: 22px;
-}
-
-.side-grid-left::after {
-  left: 22px;
-}
-
-.side-grid-right {
-  right: 18px;
-}
-
-.side-grid-right::before {
-  right: 22px;
-}
-
-.side-grid-right::after {
-  right: 22px;
 }
 
 .home-meta {
@@ -204,57 +140,61 @@ body {
 
 /* BARCODE */
 .barcode-block {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-
-  transform: translateX(-50%);
+  margin-top: 18px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  opacity: 0.55;
+  opacity: 0.35;
 }
 
 .barcode {
-  display: flex;
-  gap: 3px;
-  align-items: end;
+  position: relative;
 
-  height: 70px;
+  width: 260px;
+  height: 80px;
+
+  background:
+    repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,0.95) 0px,
+      rgba(255,255,255,0.95) 2px,
+      transparent 2px,
+      transparent 4px,
+      rgba(255,255,255,0.7) 4px,
+      rgba(255,255,255,0.7) 7px,
+      transparent 7px,
+      transparent 10px,
+      rgba(255,255,255,0.95) 10px,
+      rgba(255,255,255,0.95) 14px,
+      transparent 14px,
+      transparent 18px,
+      rgba(255,255,255,0.6) 18px,
+      rgba(255,255,255,0.6) 20px,
+      transparent 20px,
+      transparent 24px
+    );
+
+  mask-image: linear-gradient(to bottom, transparent 0%, white 12%, white 88%, transparent 100%);
 }
 
-.barcode span {
-  width: 3px;
-  background: rgba(255,255,255,0.7);
-}
+.barcode::after {
+  content: "392711194124";
 
-.barcode span:nth-child(1) { height: 22px; }
-.barcode span:nth-child(2) { height: 45px; }
-.barcode span:nth-child(3) { height: 30px; }
-.barcode span:nth-child(4) { height: 55px; }
-.barcode span:nth-child(5) { height: 38px; }
-.barcode span:nth-child(6) { height: 60px; }
-.barcode span:nth-child(7) { height: 28px; }
-.barcode span:nth-child(8) { height: 68px; }
-.barcode span:nth-child(9) { height: 40px; }
-.barcode span:nth-child(10) { height: 58px; }
-.barcode span:nth-child(11) { height: 34px; }
-.barcode span:nth-child(12) { height: 64px; }
-.barcode span:nth-child(13) { height: 22px; }
-.barcode span:nth-child(14) { height: 48px; }
-.barcode span:nth-child(15) { height: 37px; }
-.barcode span:nth-child(16) { height: 69px; }
-.barcode span:nth-child(17) { height: 26px; }
-.barcode span:nth-child(18) { height: 52px; }
-.barcode span:nth-child(19) { height: 32px; }
-.barcode span:nth-child(20) { height: 62px; }
-.barcode span:nth-child(21) { height: 42px; }
-.barcode span:nth-child(22) { height: 58px; }
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,0.5);
+}
 
 .barcode-block p {
-  margin-top: 8px;
+  margin-top: 26px;
   font-size: 10px;
   letter-spacing: 3px;
 }
@@ -393,9 +333,5 @@ body {
 
   .home-visual img {
     max-height: 500px;
-  }
-
-  .side-grid {
-    display: none;
   }
 }
