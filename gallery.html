@@ -36,36 +36,40 @@
 </div>
 
 <script>
-  const projects = [
-    { name: "Club Cyberia", folder: "Club-Cyberia", count: 12 },
-    { name: "Club Luve", folder: "Club-Luve", count: 12 },
-    { name: "Metro", folder: "Metro", count: 12 },
-    { name: "Misc Practice", folder: "Misc-Practice", count: 12 },
-    { name: "Photo Manipulation", folder: "Photo-Manipulation", count: 12 },
-    { name: "Slav", folder: "Slav", count: 12 },
-    { name: "Tyler Chibi", folder: "Tyler-Chibi", count: 12 },
-    { name: "Weapons", folder: "Weapons", count: 12 },
-    { name: "Z.E.E", folder: "ZEE", start: 53, end: 61 }
+  const projectFolders = [
+    "Club-Cyberia",
+    "Club-Luve",
+    "Metro",
+    "Misc-Practice",
+    "Photo-Manipulation",
+    "Slav",
+    "Tyler-Chibi",
+    "Weapons",
+    "ZEE"
   ];
 
   const gallery = document.getElementById("gallery");
 
-  projects.forEach(project => {
-    const start = project.start || 1;
-    const end = project.end || project.count;
+  function labelFromFolder(folder) {
+    if (folder === "ZEE") return "Z.E.E";
+    return folder.replaceAll("-", " ");
+  }
 
-    for (let i = start; i <= end; i++) {
+  projectFolders.forEach(folder => {
+    const projectName = labelFromFolder(folder);
+
+    for (let i = 1; i <= 80; i++) {
       const card = document.createElement("article");
       card.className = "gallery-card";
 
       const img = document.createElement("img");
-      img.src = `IMAGES/${project.folder}/${i}.png`;
-      img.alt = `${project.name} render ${i}`;
+      img.src = `IMAGES/${folder}/${i}.png`;
+      img.alt = `${projectName} render ${i}`;
       img.loading = "lazy";
 
       const tag = document.createElement("span");
       tag.className = "image-tag";
-      tag.textContent = project.name;
+      tag.textContent = projectName;
 
       img.addEventListener("error", () => {
         card.remove();
