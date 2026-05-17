@@ -9,17 +9,15 @@
 
 <body>
 
-  <!-- TOP NAVIGATION -->
   <nav class="site-nav">
-    <a href="#home">Home</a>
-    <a href="#gallery-section">Gallery</a>
-    <a href="#video-section">Video</a>
-    <a href="#projects-section">Projects</a>
-    <a href="#about-section">About / Connections</a>
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="video.html">Video</a>
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About / Connections</a>
   </nav>
 
-  <!-- HOME -->
-  <header id="home" class="home-section">
+  <main class="home-section">
     <div class="home-content">
       <p class="eyebrow">Subject</p>
       <h1>Z.E.E / Mr_Zee99</h1>
@@ -28,112 +26,8 @@
         I build visuals, systems, and digital experiments. This site is the main archive for my renders,
         videos, current projects, and creative work.
       </p>
-
-      <div class="home-actions">
-        <a href="#gallery-section">View Gallery</a>
-        <a href="#video-section">Watch Videos</a>
-        <a href="#projects-section">View Projects</a>
-      </div>
     </div>
-  </header>
-
-  <!-- IMAGE GALLERY -->
-  <section id="gallery-section" class="page-section">
-    <h2 class="section-title">PNG Gallery</h2>
-    <section id="gallery" class="gallery"></section>
-  </section>
-
-  <!-- LIGHTBOX OVERLAY -->
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img id="lightbox-img" src="" alt="Expanded gallery item">
-  </div>
-
-  <!-- VIDEO REEL -->
-  <section id="video-section" class="page-section video-section">
-    <h2 class="section-title">Video Reel</h2>
-
-    <div class="video-grid">
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/-n0sF5DgUi4" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/qsLTzyPeLS4" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/mXtX0ABJNHQ" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/flUpquzw2e0" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/lW863SdeHsI" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/TOMPx0jnlUM" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/cfTvESO6aic" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/9QYh-oE3ueQ" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/O7jL_vHwO6k" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/fND7x-TSDk8" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/_3L89O9qMuo" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SEn6E9B7wR4" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/J5Te6Rat7iA" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/v2nKYL3XhHc" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zpIkqeA8abE" allowfullscreen></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Lg0X2vNy8bw" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects-section" class="page-section placeholder-section">
-    <h2 class="section-title">Projects</h2>
-    <p>Project breakdowns coming soon.</p>
-  </section>
-
-  <!-- ABOUT / CONNECTIONS -->
-  <section id="about-section" class="page-section placeholder-section">
-    <h2 class="section-title">About / Connections</h2>
-    <p>Bio, resume, and contact details coming soon.</p>
-  </section>
-
-  <!-- SOCIAL LINKS -->
-  <footer class="social-footer">
-    <a href="https://www.youtube.com/@Mr_Zee99" target="_blank" class="social-link">
-      <img src="icons/youtube.svg" alt="YouTube">
-      <span>@Mr_Zee99</span>
-    </a>
-
-    <a href="https://www.tiktok.com/@mrzee99" target="_blank" class="social-link">
-      <img src="icons/tiktok.svg" alt="TikTok">
-      <span>@mrzee99</span>
-    </a>
-
-    <div class="social-link">
-      <img src="icons/discord.svg" alt="Discord">
-      <span>@mrzee99</span>
-    </div>
-  </footer>
-
-  <!-- JAVASCRIPT -->
-  <script>
-    const images = Array.from({ length: 61 }, (_, i) => `${i + 1}.png`);
-    const gallery = document.getElementById("gallery");
-
-    images.forEach(name => {
-      const img = document.createElement("img");
-      img.src = `img/${name}`;
-      img.alt = name;
-      gallery.appendChild(img);
-    });
-
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const closeBtn = document.querySelector(".close");
-
-    document.addEventListener("click", (e) => {
-      if (e.target.matches(".gallery img")) {
-        lightbox.style.display = "flex";
-        lightboxImg.src = e.target.src;
-      }
-    });
-
-    closeBtn.addEventListener("click", () => {
-      lightbox.style.display = "none";
-    });
-
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) lightbox.style.display = "none";
-    });
-  </script>
+  </main>
 
 </body>
 </html>
