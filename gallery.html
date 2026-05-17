@@ -35,50 +35,31 @@
   <img id="lightbox-img" src="" alt="Expanded gallery item">
 </div>
 
-<script>
-  const projectFolders = [
-    "Club-Cyberia",
-    "Club-Luve",
-    "Metro",
-    "Misc-Practice",
-    "Photo-Manipulation",
-    "Slav",
-    "Tyler-Chibi",
-    "Weapons",
-    "ZEE"
-  ];
+<script src="gallery-data.js"></script>
 
+<script>
   const gallery = document.getElementById("gallery");
 
-  function labelFromFolder(folder) {
-    if (folder === "ZEE") return "Z.E.E";
-    return folder.replaceAll("-", " ");
-  }
+  galleryItems.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "gallery-card";
 
-  projectFolders.forEach(folder => {
-    const projectName = labelFromFolder(folder);
+    const img = document.createElement("img");
+    img.src = `IMAGES/${item.folder}/${item.file}`;
+    img.alt = item.project;
+    img.loading = "lazy";
 
-    for (let i = 1; i <= 80; i++) {
-      const card = document.createElement("article");
-      card.className = "gallery-card";
+    const tag = document.createElement("span");
+    tag.className = "image-tag";
+    tag.textContent = item.project;
 
-      const img = document.createElement("img");
-      img.src = `IMAGES/${folder}/${i}.png`;
-      img.alt = `${projectName} render ${i}`;
-      img.loading = "lazy";
+    img.addEventListener("error", () => {
+      card.remove();
+    });
 
-      const tag = document.createElement("span");
-      tag.className = "image-tag";
-      tag.textContent = projectName;
-
-      img.addEventListener("error", () => {
-        card.remove();
-      });
-
-      card.appendChild(img);
-      card.appendChild(tag);
-      gallery.appendChild(card);
-    }
+    card.appendChild(img);
+    card.appendChild(tag);
+    gallery.appendChild(card);
   });
 
   const lightbox = document.getElementById("lightbox");
@@ -97,7 +78,9 @@
   });
 
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) lightbox.style.display = "none";
+    if (e.target === lightbox) {
+      lightbox.style.display = "none";
+    }
   });
 </script>
 
