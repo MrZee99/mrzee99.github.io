@@ -140,63 +140,31 @@ body {
 
 /* BARCODE */
 .barcode-block {
-  margin-top: 18px;
+  margin-top: 22px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  opacity: 0.35;
+  opacity: 0.18;
+
+  pointer-events: none;
 }
 
-.barcode {
-  position: relative;
-
+.barcode-block img {
   width: 260px;
-  height: 80px;
+  height: auto;
 
-  background:
-    repeating-linear-gradient(
-      to right,
-      rgba(255,255,255,0.95) 0px,
-      rgba(255,255,255,0.95) 2px,
-      transparent 2px,
-      transparent 4px,
-      rgba(255,255,255,0.7) 4px,
-      rgba(255,255,255,0.7) 7px,
-      transparent 7px,
-      transparent 10px,
-      rgba(255,255,255,0.95) 10px,
-      rgba(255,255,255,0.95) 14px,
-      transparent 14px,
-      transparent 18px,
-      rgba(255,255,255,0.6) 18px,
-      rgba(255,255,255,0.6) 20px,
-      transparent 20px,
-      transparent 24px
-    );
-
-  mask-image: linear-gradient(to bottom, transparent 0%, white 12%, white 88%, transparent 100%);
-}
-
-.barcode::after {
-  content: "392711194124";
-
-  position: absolute;
-  bottom: -18px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: rgba(255,255,255,0.5);
+  image-rendering: crisp-edges;
+  filter: grayscale(1) brightness(1.2);
 }
 
 .barcode-block p {
-  margin-top: 26px;
+  margin-top: 8px;
+
   font-size: 10px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,0.45);
 }
 
 /* GENERAL SECTIONS */
