@@ -65,18 +65,18 @@
     iframe.title = video.title;
     iframe.allowFullscreen = true;
 
+    const tag = document.createElement("span");
+    tag.className = "video-tag";
+    tag.textContent = video.tag;
+
     const info = document.createElement("div");
     info.className = "video-info";
 
     const title = document.createElement("h2");
     title.textContent = video.title;
 
-    const tag = document.createElement("span");
-    tag.className = "video-tag";
-    tag.textContent = video.tag;
-
     wrapper.appendChild(iframe);
-    info.appendChild(tag);
+    wrapper.appendChild(tag);
     info.appendChild(title);
     card.appendChild(wrapper);
     card.appendChild(info);
