@@ -6,6 +6,10 @@ body {
   padding: 0;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 .site-nav {
   position: sticky;
   top: 0;
@@ -250,6 +254,13 @@ body {
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.08);
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.18);
 }
 
 .project-card img {
@@ -271,6 +282,101 @@ body {
 .project-info p {
   color: rgba(255,255,255,0.65);
   line-height: 1.7;
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.project-modal.active {
+  display: flex;
+}
+
+.project-modal-panel {
+  width: 100%;
+  max-width: 1700px;
+  height: 90vh;
+  background: #070707;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: grid;
+  grid-template-columns: 1.4fr 0.7fr;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-modal-media {
+  overflow-y: auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  align-content: start;
+}
+
+.project-modal-media img {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+}
+
+.project-modal-text {
+  border-left: 1px solid rgba(255,255,255,0.08);
+  padding: 60px 40px;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.015);
+}
+
+.project-modal-label {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+  opacity: 0.45;
+  margin-bottom: 30px;
+}
+
+.project-modal-text h2 {
+  font-size: 4rem;
+  line-height: 1;
+  margin: 0 0 30px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.project-modal-text p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.7);
+}
+
+.project-modal-count {
+  margin-top: 40px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.project-modal-close:hover {
+  color: white;
 }
 
 .video-grid {
@@ -345,4 +451,10 @@ body {
   .archive-header h1 { font-size: 3rem; }
   .project-grid { grid-template-columns: 1fr; }
   .gallery { columns: 2 200px; }
+
+  .project-modal-panel {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: 95vh;
+  }
 }
