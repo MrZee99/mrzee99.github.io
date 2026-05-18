@@ -4,6 +4,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  min-width: 1200px;
+}
+
+html {
+  min-width: 1200px;
+  overflow-x: auto;
 }
 
 body.modal-open {
@@ -459,28 +465,4 @@ body.modal-open {
 .social-link img {
   width: 18px;
   height: 18px;
-}
-
-@media (max-width: 1100px) {
-  .home-frame {
-    grid-template-columns: 1fr;
-    padding-top: 100px;
-  }
-
-  .home-content {
-    text-align: center;
-    margin: auto;
-  }
-
-  .home-content h1 { font-size: 4rem; }
-  .home-visual img { max-height: 500px; }
-  .archive-header h1 { font-size: 3rem; }
-  .project-grid { grid-template-columns: 1fr; }
-  .gallery { columns: 2 200px; }
-
-  .project-modal-panel {
-    grid-template-columns: 1fr;
-    height: auto;
-    max-height: 95vh;
-  }
 }
