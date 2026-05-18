@@ -19,73 +19,36 @@
 <section class="page-section">
   <header class="archive-header">
     <h1>Projects</h1>
-    <p>Photo + video collections. Full project pages are reserved for work with both visual renders and motion.</p>
+    <p>Grouped collections, environments, experiments, and visual concepts.</p>
   </header>
 
   <section id="project-grid" class="project-grid"></section>
 </section>
-
-<div id="project-modal" class="project-modal">
-  <div class="project-modal-panel">
-    <button id="project-modal-close" class="project-modal-close">×</button>
-    <div class="project-modal-media" id="project-modal-media"></div>
-    <aside class="project-modal-text">
-      <p class="project-modal-label">PROJECT FILE</p>
-      <h2 id="project-modal-title"></h2>
-      <p id="project-modal-description"></p>
-      <div id="project-modal-count" class="project-modal-count"></div>
-    </aside>
-  </div>
-</div>
 
 <script src="gallery-data.js?v=5"></script>
 
 <script>
   const projectDescriptions = {
     "Club Cyberia": "Neon environments, underground club visuals, and atmosphere tests.",
+    "Club Luve": "Dark lounge concepts and red-lit environment experiments.",
     "Machine Girl": "Character-focused renders, stylized action frames, and visual identity tests.",
     "Metro": "Subway renders, underground transit scenes, and cinematic lighting.",
     "Misc Practice": "Loose render tests, experiments, and visual problem-solving.",
+    "Photo Manipulation": "Edited imagery, composite tests, and graphic experiments.",
+    "Slav": "Character experiments and stylized figure work.",
     "Tyler Chibi": "Stylized low-poly character work inspired by Tyler, The Creator.",
+    "Weapons": "Hard-surface models, prop tests, and weapon renders.",
     "Z.E.E": "The evolving digital mascot, identity system, and visual archive core."
   };
 
-  const projectVideos = {
-    "Club Cyberia": [
-      { title: "Cyberia Café & Club Showcase!", tag: "Gameplay", link: "https://www.youtube.com/watch?v=qsLTzyPeLS4" }
-    ],
-    "Machine Girl": [
-      { title: "MG Discovers KX-series", tag: "Render", link: "https://www.youtube.com/watch?v=cfTvESO6aic" }
-    ],
-    "Metro": [
-      { title: "Metro Station", tag: "Render", link: "https://www.youtube.com/watch?v=TOMPx0jnlUM" }
-    ],
-    "Misc Practice": [
-      { title: "D.A.R.K Test Animations", tag: "Practice", link: "https://www.youtube.com/watch?v=lW863SdeHsI" },
-      { title: "Watch Dogs 1 Intro", tag: "Practice", link: "https://www.youtube.com/watch?v=9QYh-oE3ueQ" },
-      { title: "Animation Practice Reel", tag: "Practice", link: "https://www.youtube.com/watch?v=O7jL_vHwO6k" },
-      { title: "ROR2 Hazard Bump", tag: "Practice", link: "https://www.youtube.com/watch?v=fND7x-TSDk8" }
-    ],
-    "Tyler Chibi": [
-      { title: "Don't Toy with Me, Miss Nagatoro", tag: "Video Edit", link: "https://www.youtube.com/watch?v=v2nKYL3XhHc" }
-    ],
-    "Z.E.E": [
-      { title: "Z.E.E HARBOR", tag: "Animation", link: "https://www.youtube.com/watch?v=-n0sF5DgUi4" }
-    ]
-  };
-
   const projectGrid = document.getElementById("project-grid");
-  const projectModal = document.getElementById("project-modal");
-  const projectModalClose = document.getElementById("project-modal-close");
-  const projectModalMedia = document.getElementById("project-modal-media");
-  const projectModalTitle = document.getElementById("project-modal-title");
-  const projectModalDescription = document.getElementById("project-modal-description");
-  const projectModalCount = document.getElementById("project-modal-count");
-
   const groupedProjects = {};
 
   galleryItems.forEach(item => {
-    if (!groupedProjects[item.project]) groupedProjects[item.project] = [];
+    if (!groupedProjects[item.project]) {
+      groupedProjects[item.project] = [];
+    }
+
     groupedProjects[item.project].push(item);
   });
 
@@ -93,79 +56,14 @@
     return items[Math.floor(Math.random() * items.length)];
   }
 
-  function imagePath(item) {
-    return encodeURI(`IMAGES/${item.folder}/${item.file}`);
-  }
-
-  function getYouTubeId(url) {
-    return url.split("v=")[1].trim();
-  }
-
-  function createVideoEmbed(video) {
-    const id = getYouTubeId(video.link);
-    const card = document.createElement("article");
-    card.className = "modal-video-card";
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "video-wrapper";
-
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${id}`;
-    iframe.title = video.title;
-    iframe.allowFullscreen = true;
-
-    const tag = document.createElement("span");
-    tag.className = "video-tag";
-    tag.textContent = video.tag;
-
-    const title = document.createElement("p");
-    title.className = "modal-video-title";
-    title.textContent = video.title;
-
-    wrapper.appendChild(iframe);
-    wrapper.appendChild(tag);
-    card.appendChild(wrapper);
-    card.appendChild(title);
-    return card;
-  }
-
-  function openProject(projectName, items) {
-    const videos = projectVideos[projectName] || [];
-    projectModalMedia.innerHTML = "";
-    projectModalTitle.textContent = projectName;
-    projectModalDescription.textContent = projectDescriptions[projectName] || "Photo and video project archive.";
-    projectModalCount.textContent = `${items.length} archived image${items.length === 1 ? "" : "s"} / ${videos.length} video${videos.length === 1 ? "" : "s"}`;
-
-    videos.forEach(video => projectModalMedia.appendChild(createVideoEmbed(video)));
-
-    items.forEach(item => {
-      const img = document.createElement("img");
-      img.src = imagePath(item);
-      img.alt = `${projectName} project image`;
-      projectModalMedia.appendChild(img);
-    });
-
-    projectModal.classList.add("active");
-    document.body.classList.add("modal-open");
-  }
-
-  function closeProject() {
-    projectModal.classList.remove("active");
-    document.body.classList.remove("modal-open");
-    projectModalMedia.innerHTML = "";
-  }
-
   Object.entries(groupedProjects).forEach(([projectName, items]) => {
-    const videos = projectVideos[projectName] || [];
-    if (!items.length || !videos.length) return;
-
     const preview = randomItem(items);
+
     const card = document.createElement("article");
     card.className = "project-card";
-    card.tabIndex = 0;
 
     const img = document.createElement("img");
-    img.src = imagePath(preview);
+    img.src = encodeURI(`IMAGES/${preview.folder}/${preview.file}`);
     img.alt = `${projectName} preview`;
 
     const info = document.createElement("div");
@@ -175,27 +73,13 @@
     title.textContent = projectName;
 
     const description = document.createElement("p");
-    description.textContent = projectDescriptions[projectName] || "Photo and video project archive.";
+    description.textContent = projectDescriptions[projectName] || "Grouped visual experiments and project archive.";
 
     info.appendChild(title);
     info.appendChild(description);
     card.appendChild(img);
     card.appendChild(info);
     projectGrid.appendChild(card);
-
-    card.addEventListener("click", () => openProject(projectName, items));
-    card.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") openProject(projectName, items);
-    });
-  });
-
-  projectModalClose.addEventListener("click", closeProject);
-  projectModal.addEventListener("click", (event) => {
-    if (event.target === projectModal) closeProject();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeProject();
   });
 </script>
 
