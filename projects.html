@@ -43,6 +43,10 @@
 <script src="gallery-data.js?v=6"></script>
 
 <script>
+  const projectTitles = {
+    "Club Cyberia": "Cyberia Café & Club"
+  };
+
   const projectDescriptions = {
     "Club Cyberia": "Neon environments, underground club visuals, and atmosphere tests.",
     "Club Luve": "Dark lounge concepts and red-lit environment experiments.",
@@ -54,6 +58,21 @@
     "Tyler Chibi": "Stylized low-poly character work inspired by Tyler, The Creator.",
     "Weapons": "Hard-surface models, prop tests, and weapon renders.",
     "Z.E.E": "The evolving digital mascot, identity system, and visual archive core."
+  };
+
+  const projectVideos = {
+    "Z.E.E": [
+      { title: "Z.E.E HARBOR", tag: "Animation", link: "https://www.youtube.com/watch?v=-n0sF5DgUi4" }
+    ],
+    "Club Cyberia": [
+      { title: "Cyberia Café & Club Showcase!", tag: "Gameplay", link: "https://www.youtube.com/watch?v=qsLTzyPeLS4" }
+    ],
+    "Metro": [
+      { title: "Metro Station", tag: "Render", link: "https://www.youtube.com/watch?v=TOMPx0jnlUM" }
+    ],
+    "Slav": [
+      { title: "MG Discovers KX-series", tag: "Render", link: "https://www.youtube.com/watch?v=cfTvESO6aic" }
+    ]
   };
 
   const projectGrid = document.getElementById("project-grid");
@@ -70,6 +89,10 @@
     if (!groupedProjects[item.project]) groupedProjects[item.project] = [];
     groupedProjects[item.project].push(item);
   });
+
+  function displayTitle(projectName) {
+    return projectTitles[projectName] || projectName;
+  }
 
   function randomItem(items) {
     return items[Math.floor(Math.random() * items.length)];
@@ -89,12 +112,40 @@
     return encodeURI(`IMAGES/${item.folder}/${baseName}_thumbnail.png`);
   }
 
+  function getYouTubeId(url) {
+    return url.split("v=")[1].trim();
+  }
+
+  function createVideoEmbed(video) {
+    const id = getYouTubeId(video.link);
+    const card = document.createElement("article");
+    card.className = "modal-video-card";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "video-wrapper";
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${id}`;
+    iframe.title = video.title;
+    iframe.allowFullscreen = true;
+
+    const tag = document.createElement("span");
+    tag.className = "video-tag";
+    tag.textContent = video.tag;
+
+    wrapper.appendChild(iframe);
+    wrapper.appendChild(tag);
+    card.appendChild(wrapper);
+
+    return card;
+  }
+
   function createPreviewImage(item) {
     const img = document.createElement("img");
 
     img.src = thumbnailPath(item);
     img.dataset.full = imagePath(item);
-    img.alt = `${item.project} preview`;
+    img.alt = `${displayTitle(item.project)} preview`;
     img.loading = "lazy";
 
     img.addEventListener("error", () => {
@@ -114,16 +165,21 @@
   }
 
   function openProject(projectName, items) {
+    const videos = projectVideos[projectName] || [];
     projectModalMedia.innerHTML = "";
 
-    projectModalTitle.textContent = projectName;
+    projectModalTitle.textContent = displayTitle(projectName);
     projectModalDescription.textContent = projectDescriptions[projectName] || "Grouped visual experiments and project archive.";
-    projectModalCount.textContent = `${items.length} archived image${items.length === 1 ? "" : "s"}`;
+    projectModalCount.textContent = `${items.length} archived image${items.length === 1 ? "" : "s"}${videos.length ? ` / ${videos.length} video${videos.length === 1 ? "" : "s"}` : ""}`;
+
+    videos.forEach(video => {
+      projectModalMedia.appendChild(createVideoEmbed(video));
+    });
 
     items.forEach(item => {
       const img = document.createElement("img");
       img.src = imagePath(item);
-      img.alt = `${projectName} project image`;
+      img.alt = `${displayTitle(projectName)} project image`;
       img.loading = "lazy";
       projectModalMedia.appendChild(img);
     });
@@ -150,7 +206,7 @@
     info.className = "project-info";
 
     const title = document.createElement("h2");
-    title.textContent = projectName;
+    title.textContent = displayTitle(projectName);
 
     const description = document.createElement("p");
     description.textContent = projectDescriptions[projectName] || "Grouped visual experiments and project archive.";
