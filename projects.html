@@ -40,6 +40,11 @@
   </div>
 </div>
 
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" src="" alt="Expanded project image">
+</div>
+
 <script src="gallery-data.js?v=6"></script>
 
 <script>
@@ -82,6 +87,9 @@
   const projectModalTitle = document.getElementById("project-modal-title");
   const projectModalDescription = document.getElementById("project-modal-description");
   const projectModalCount = document.getElementById("project-modal-count");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeLightbox = document.querySelector(".close");
 
   const groupedProjects = {};
 
@@ -165,6 +173,13 @@
     return img;
   }
 
+  function createModalImage(item, projectName) {
+    const img = createPreviewImage(item);
+    img.className = "project-modal-thumb";
+    img.alt = `${displayTitle(projectName)} project image`;
+    return img;
+  }
+
   function openProject(projectName, items) {
     const videos = projectVideos[projectName] || [];
     projectModalMedia.innerHTML = "";
@@ -181,13 +196,14 @@
       projectModalMedia.appendChild(createSectionDivider());
     }
 
+    const imageGrid = document.createElement("div");
+    imageGrid.className = "project-modal-image-grid";
+
     items.forEach(item => {
-      const img = document.createElement("img");
-      img.src = imagePath(item);
-      img.alt = `${displayTitle(projectName)} project image`;
-      img.loading = "lazy";
-      projectModalMedia.appendChild(img);
+      imageGrid.appendChild(createModalImage(item, projectName));
     });
+
+    projectModalMedia.appendChild(imageGrid);
 
     projectModal.classList.add("active");
     document.body.classList.add("modal-open");
@@ -228,14 +244,29 @@
     });
   });
 
+  document.addEventListener("click", (event) => {
+    if (event.target.matches(".project-modal-thumb")) {
+      lightbox.style.display = "flex";
+      lightboxImg.src = event.target.dataset.full || event.target.src;
+    }
+  });
+
   projectModalClose.addEventListener("click", closeProject);
+  closeLightbox.addEventListener("click", () => lightbox.style.display = "none");
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) lightbox.style.display = "none";
+  });
 
   projectModal.addEventListener("click", (event) => {
     if (event.target === projectModal) closeProject();
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeProject();
+    if (event.key === "Escape") {
+      lightbox.style.display = "none";
+      closeProject();
+    }
   });
 </script>
 
