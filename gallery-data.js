@@ -44,10 +44,10 @@ const galleryItems = [
   { project: "Misc Practice", folder: "Misc-Practice", file: "7.png" },
   { project: "Misc Practice", folder: "Misc-Practice", file: "9.png" },
 
-  { project: "Photo Manipulation", folder: "Photo-Manipulation", file: "25.png" },
-  { project: "Photo Manipulation", folder: "Photo-Manipulation", file: "29.png" },
-  { project: "Photo Manipulation", folder: "Photo-Manipulation", file: "39.png" },
-  { project: "Photo Manipulation", folder: "Photo-Manipulation", file: "95c-Recovered.png" },
+  { project: "Photo Manipulation", folder: "Photo-Manipluation", file: "25.png" },
+  { project: "Photo Manipulation", folder: "Photo-Manipluation", file: "29.png" },
+  { project: "Photo Manipulation", folder: "Photo-Manipluation", file: "39.png" },
+  { project: "Photo Manipulation", folder: "Photo-Manipluation", file: "95c-Recovered.png" },
 
   { project: "Slav", folder: "Slav", file: "23.png" },
 
