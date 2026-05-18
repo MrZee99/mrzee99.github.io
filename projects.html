@@ -116,10 +116,9 @@
     return url.split("v=")[1].trim();
   }
 
-  function createSectionLabel(label) {
+  function createSectionDivider() {
     const divider = document.createElement("div");
-    divider.className = "modal-section-label";
-    divider.textContent = label;
+    divider.className = "modal-section-divider";
     return divider;
   }
 
@@ -174,14 +173,13 @@
     projectModalDescription.textContent = projectDescriptions[projectName] || "Grouped visual experiments and project archive.";
     projectModalCount.textContent = `${items.length} archived image${items.length === 1 ? "" : "s"}${videos.length ? ` / ${videos.length} video${videos.length === 1 ? "" : "s"}` : ""}`;
 
-    if (videos.length) {
-      projectModalMedia.appendChild(createSectionLabel("Motion"));
-      videos.forEach(video => {
-        projectModalMedia.appendChild(createVideoEmbed(video));
-      });
-    }
+    videos.forEach(video => {
+      projectModalMedia.appendChild(createVideoEmbed(video));
+    });
 
-    projectModalMedia.appendChild(createSectionLabel("Images"));
+    if (videos.length && items.length) {
+      projectModalMedia.appendChild(createSectionDivider());
+    }
 
     items.forEach(item => {
       const img = document.createElement("img");
