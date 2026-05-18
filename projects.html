@@ -25,6 +25,21 @@
   <section id="project-grid" class="project-grid"></section>
 </section>
 
+<div id="project-modal" class="project-modal">
+  <div class="project-modal-panel">
+    <button id="project-modal-close" class="project-modal-close">×</button>
+
+    <div class="project-modal-media" id="project-modal-media"></div>
+
+    <aside class="project-modal-text">
+      <p class="project-modal-label">PROJECT FILE</p>
+      <h2 id="project-modal-title"></h2>
+      <p id="project-modal-description"></p>
+      <div id="project-modal-count" class="project-modal-count"></div>
+    </aside>
+  </div>
+</div>
+
 <script src="gallery-data.js?v=5"></script>
 
 <script>
@@ -42,13 +57,17 @@
   };
 
   const projectGrid = document.getElementById("project-grid");
+  const projectModal = document.getElementById("project-modal");
+  const projectModalClose = document.getElementById("project-modal-close");
+  const projectModalMedia = document.getElementById("project-modal-media");
+  const projectModalTitle = document.getElementById("project-modal-title");
+  const projectModalDescription = document.getElementById("project-modal-description");
+  const projectModalCount = document.getElementById("project-modal-count");
+
   const groupedProjects = {};
 
   galleryItems.forEach(item => {
-    if (!groupedProjects[item.project]) {
-      groupedProjects[item.project] = [];
-    }
-
+    if (!groupedProjects[item.project]) groupedProjects[item.project] = [];
     groupedProjects[item.project].push(item);
   });
 
@@ -56,14 +75,41 @@
     return items[Math.floor(Math.random() * items.length)];
   }
 
+  function imagePath(item) {
+    return encodeURI(`IMAGES/${item.folder}/${item.file}`);
+  }
+
+  function openProject(projectName, items) {
+    projectModalMedia.innerHTML = "";
+    projectModalTitle.textContent = projectName;
+    projectModalDescription.textContent = projectDescriptions[projectName] || "Grouped visual experiments and project archive.";
+    projectModalCount.textContent = `${items.length} archived image${items.length === 1 ? "" : "s"}`;
+
+    items.forEach(item => {
+      const img = document.createElement("img");
+      img.src = imagePath(item);
+      img.alt = `${projectName} project image`;
+      projectModalMedia.appendChild(img);
+    });
+
+    projectModal.classList.add("active");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeProject() {
+    projectModal.classList.remove("active");
+    document.body.classList.remove("modal-open");
+  }
+
   Object.entries(groupedProjects).forEach(([projectName, items]) => {
     const preview = randomItem(items);
 
     const card = document.createElement("article");
     card.className = "project-card";
+    card.tabIndex = 0;
 
     const img = document.createElement("img");
-    img.src = encodeURI(`IMAGES/${preview.folder}/${preview.file}`);
+    img.src = imagePath(preview);
     img.alt = `${projectName} preview`;
 
     const info = document.createElement("div");
@@ -80,6 +126,20 @@
     card.appendChild(img);
     card.appendChild(info);
     projectGrid.appendChild(card);
+
+    card.addEventListener("click", () => openProject(projectName, items));
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") openProject(projectName, items);
+    });
+  });
+
+  projectModalClose.addEventListener("click", closeProject);
+  projectModal.addEventListener("click", (event) => {
+    if (event.target === projectModal) closeProject();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeProject();
   });
 </script>
 
