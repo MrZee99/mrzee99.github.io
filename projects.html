@@ -116,6 +116,13 @@
     return url.split("v=")[1].trim();
   }
 
+  function createSectionLabel(label) {
+    const divider = document.createElement("div");
+    divider.className = "modal-section-label";
+    divider.textContent = label;
+    return divider;
+  }
+
   function createVideoEmbed(video) {
     const id = getYouTubeId(video.link);
     const card = document.createElement("article");
@@ -129,12 +136,7 @@
     iframe.title = video.title;
     iframe.allowFullscreen = true;
 
-    const tag = document.createElement("span");
-    tag.className = "video-tag";
-    tag.textContent = video.tag;
-
     wrapper.appendChild(iframe);
-    wrapper.appendChild(tag);
     card.appendChild(wrapper);
 
     return card;
@@ -172,9 +174,14 @@
     projectModalDescription.textContent = projectDescriptions[projectName] || "Grouped visual experiments and project archive.";
     projectModalCount.textContent = `${items.length} archived image${items.length === 1 ? "" : "s"}${videos.length ? ` / ${videos.length} video${videos.length === 1 ? "" : "s"}` : ""}`;
 
-    videos.forEach(video => {
-      projectModalMedia.appendChild(createVideoEmbed(video));
-    });
+    if (videos.length) {
+      projectModalMedia.appendChild(createSectionLabel("Motion"));
+      videos.forEach(video => {
+        projectModalMedia.appendChild(createVideoEmbed(video));
+      });
+    }
+
+    projectModalMedia.appendChild(createSectionLabel("Images"));
 
     items.forEach(item => {
       const img = document.createElement("img");
