@@ -18,11 +18,6 @@
 
 <section class="page-section gallery-page">
   <header class="archive-header">
-    <div class="archive-meta">
-      <span>ARCHIVE: VISUAL</span>
-      <span>STATUS: ACTIVE</span>
-    </div>
-
     <h1>Visual Archive</h1>
     <p>Renders, experiments, characters, scenes, and visual tests.</p>
   </header>
@@ -35,7 +30,7 @@
   <img id="lightbox-img" src="" alt="Expanded gallery item">
 </div>
 
-<script src="gallery-data.js?v=3"></script>
+<script src="gallery-data.js?v=6"></script>
 
 <script>
   const gallery = document.getElementById("gallery");
@@ -44,22 +39,45 @@
     return encodeURI(`IMAGES/${item.folder}/${item.file}`);
   }
 
+  function thumbnailPath(item) {
+    const baseName = item.file.replace(/\.[^/.]+$/, "");
+    return encodeURI(`IMAGES/${item.folder}/${baseName}_thumbnail.jpg`);
+  }
+
+  function pngThumbnailPath(item) {
+    const baseName = item.file.replace(/\.[^/.]+$/, "");
+    return encodeURI(`IMAGES/${item.folder}/${baseName}_thumbnail.png`);
+  }
+
   galleryItems.forEach(item => {
     const card = document.createElement("article");
     card.className = "gallery-card";
 
     const img = document.createElement("img");
-    img.src = imagePath(item);
+    img.src = thumbnailPath(item);
+    img.dataset.full = imagePath(item);
     img.alt = item.project;
     img.loading = "lazy";
+
+    img.addEventListener("error", () => {
+      if (!img.dataset.triedPngThumb) {
+        img.dataset.triedPngThumb = "true";
+        img.src = pngThumbnailPath(item);
+        return;
+      }
+
+      if (!img.dataset.triedFull) {
+        img.dataset.triedFull = "true";
+        img.src = imagePath(item);
+        return;
+      }
+
+      card.remove();
+    });
 
     const tag = document.createElement("span");
     tag.className = "image-tag";
     tag.textContent = item.project;
-
-    img.addEventListener("error", () => {
-      card.remove();
-    });
 
     card.appendChild(img);
     card.appendChild(tag);
@@ -73,7 +91,7 @@
   document.addEventListener("click", (e) => {
     if (e.target.matches(".gallery-card img")) {
       lightbox.style.display = "flex";
-      lightboxImg.src = e.target.src;
+      lightboxImg.src = e.target.dataset.full || e.target.src;
     }
   });
 
@@ -82,9 +100,7 @@
   });
 
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      lightbox.style.display = "none";
-    }
+    if (e.target === lightbox) lightbox.style.display = "none";
   });
 </script>
 
