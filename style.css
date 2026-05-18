@@ -303,13 +303,7 @@ body {
 }
 
 .video-info {
-  margin-top: 14px;
-}
-
-.video-info h2 {
-  margin: 0;
-  font-size: 1.35rem;
-  letter-spacing: 1px;
+  display: none;
 }
 
 .social-footer {
