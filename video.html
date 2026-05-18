@@ -17,27 +17,72 @@
 </nav>
 
 <section class="page-section video-section">
-  <h2 class="section-title">Video Reel</h2>
+  <header class="archive-header">
+    <h1>Video Reel</h1>
+    <p>Animations, edits, renders, gameplay captures, and practice cuts.</p>
+  </header>
 
-  <div class="video-grid">
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/-n0sF5DgUi4" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/qsLTzyPeLS4" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/mXtX0ABJNHQ" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/flUpquzw2e0" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/lW863SdeHsI" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/TOMPx0jnlUM" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/cfTvESO6aic" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/9QYh-oE3ueQ" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/O7jL_vHwO6k" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/fND7x-TSDk8" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/_3L89O9qMuo" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SEn6E9B7wR4" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/J5Te6Rat7iA" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/v2nKYL3XhHc" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zpIkqeA8abE" allowfullscreen></iframe></div>
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/Lg0X2vNy8bw" allowfullscreen></iframe></div>
-  </div>
+  <div id="video-grid" class="video-grid"></div>
 </section>
+
+<script>
+  const videos = [
+    { title: "Z.E.E HARBOR", tag: "Animation", link: "https://www.youtube.com/watch?v=-n0sF5DgUi4" },
+    { title: "Cyberia Café & Club Showcase!", tag: "Gameplay", link: "https://www.youtube.com/watch?v=qsLTzyPeLS4" },
+    { title: "A Tribute To Gmod", tag: "Gameplay", link: "https://www.youtube.com/watch?v=mXtX0ABJNHQ" },
+    { title: "My Friend Pedro", tag: "Video Edit", link: "https://www.youtube.com/watch?v=flUpquzw2e0" },
+    { title: "D.A.R.K Test Animations", tag: "Practice", link: "https://www.youtube.com/watch?v=lW863SdeHsI" },
+    { title: "Metro Station", tag: "Render", link: "https://www.youtube.com/watch?v=TOMPx0jnlUM" },
+    { title: "MG Discovers KX-series", tag: "Render", link: "https://www.youtube.com/watch?v=cfTvESO6aic" },
+    { title: "Watch Dogs 1 Intro", tag: "Practice", link: "https://www.youtube.com/watch?v=9QYh-oE3ueQ" },
+    { title: "Animation Practice Reel", tag: "Practice", link: "https://www.youtube.com/watch?v=O7jL_vHwO6k" },
+    { title: "ROR2 Hazard Bump", tag: "Practice", link: "https://www.youtube.com/watch?v=fND7x-TSDk8" },
+    { title: "CSGO", tag: "Video Edit", link: "https://www.youtube.com/watch?v=_3L89O9qMuo" },
+    { title: "Monkey Man Edit (GTA5)", tag: "Video Edit", link: "https://www.youtube.com/watch?v=SEn6E9B7wR4" },
+    { title: "Risk Of Rain 2", tag: "Video Edit", link: "https://www.youtube.com/watch?v=J5Te6Rat7iA" },
+    { title: "Don't Toy with Me, Miss Nagatoro", tag: "Video Edit", link: "https://www.youtube.com/watch?v=v2nKYL3XhHc" },
+    { title: "Bo3 Ascension Edit", tag: "Video Edit", link: "https://www.youtube.com/watch?v=zpIkqeA8abE" },
+    { title: "Criminal Mastermind", tag: "Video Edit", link: "https://www.youtube.com/watch?v=Lg0X2vNy8bw" }
+  ];
+
+  const videoGrid = document.getElementById("video-grid");
+
+  function getYouTubeId(url) {
+    return url.split("v=")[1].trim();
+  }
+
+  videos.forEach(video => {
+    const id = getYouTubeId(video.link);
+
+    const card = document.createElement("article");
+    card.className = "video-card";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "video-wrapper";
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${id}`;
+    iframe.title = video.title;
+    iframe.allowFullscreen = true;
+
+    const info = document.createElement("div");
+    info.className = "video-info";
+
+    const title = document.createElement("h2");
+    title.textContent = video.title;
+
+    const tag = document.createElement("span");
+    tag.className = "video-tag";
+    tag.textContent = video.tag;
+
+    wrapper.appendChild(iframe);
+    info.appendChild(tag);
+    info.appendChild(title);
+    card.appendChild(wrapper);
+    card.appendChild(info);
+    videoGrid.appendChild(card);
+  });
+</script>
 
 </body>
 </html>
