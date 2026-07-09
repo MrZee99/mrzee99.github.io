@@ -44,9 +44,10 @@ body.modal-open {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 40px;
+  padding-top:60px;
 }
 
 .home-frame {
@@ -59,7 +60,8 @@ body.modal-open {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
+  padding-bottom:40px;
 }
 
 .home-meta {
@@ -80,7 +82,9 @@ body.modal-open {
 }
 
 .home-visual img {
-  max-height: 850px;
+   width:auto;
+   max-width:100%;
+   max-height:min(850px,75vh);
   width: auto;
   filter: drop-shadow(0 0 40px rgba(0,0,0,0.8));
 }
